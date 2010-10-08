@@ -20,10 +20,7 @@ Gem::Specification.new do |s|
      "app/helpers/gmaps4rails/Gmaps_helper.rb",
      "app/models/gmaps4rails/gmaps.rb",
      "app/views/gmaps4rails/_map.html.erb",
-     "app/views/gmaps4rails/gmaps/index.html.erb",
      "app/views/gmaps4rails/gmaps/index.xml.builder",
-     "app/views/gmaps4rails/gmaps/show.html.erb",
-     "app/views/layouts/cheese.html.erb",
      "config/routes.rb",
      "lib/acts_as_gmappable/base.rb",
      "lib/application_helper.rb",
@@ -33,14 +30,16 @@ Gem::Specification.new do |s|
      "lib/rails/generators/gmaps4rails/templates/initializer.rb",
      "lib/rails/generators/gmaps4rails/templates/migration.rb",
      "lib/rails/generators/gmaps4rails/templates/schema.rb",
-     "lib/rails/railties/tasks.rake",
-     "public/images/cheese.jpg",
-     "public/stylesheets/cheese.css"
+     "lib/rails/railties/tasks.rake"
   ]
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}
   s.summary = %q{Description of your gem}
+  s.test_files = [
+    "test/test_helper.rb",
+     "test/unit/gmaps4rails_widget_test.rb"
+  ]
 
   if s.respond_to? :specification_version then
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
