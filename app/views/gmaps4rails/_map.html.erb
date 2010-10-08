@@ -1,0 +1,57 @@
+<% content_for(:head) do %>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<script type="text/javascript"
+    src="http://maps.google.com/maps/api/js?sensor=false">
+</script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script type="text/javascript">
+var map;
+var myOptions;
+	$(document).ready(function() {
+  var myLatLng = new google.maps.LatLng(-48.496675,-90.65625);
+  myOptions = {
+    zoom: 2,
+    center: myLatLng,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  }
+  map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+	var ctaLayer = new google.maps.KmlLayer('<%= "http://furious-robot-66.heroku.com/gmaps.xml?model=" + @model +"&rand=" + Time.now.year.to_s + Time.now.mon.to_s + Time.now.day.to_s + Time.now.hour.to_s + Time.now.min.to_s + Time.now.sec.to_s %>');
+  ctaLayer.setMap(map);
+ }
+)
+	function gmaps4rails_first(){
+	  var ctaLayer = new google.maps.KmlLayer('http://phdtalent.com/assets/kml2.kml');
+  	ctaLayer.setMap(map);
+}
+	function gmaps4rails_second(){
+	  var ctaLayer = new google.maps.KmlLayer('<%= "http://furious-robot-66.heroku.com/gmaps.xml?model=" + @model + "&filter=" + @filter + "&time=" + Time.now.sec.to_s %>');
+  	ctaLayer.setMap(map);
+}
+
+	function gmaps4rails_raz(){
+	  map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+}
+
+function gmaps4rails_disp_text()
+   {
+   var w = document.myform.mylist.selectedIndex;
+   var selected_text = document.myform.mylist.options[w].text;
+   alert(selected_text);
+   }
+</script>
+<% end %>
+
+<div id="map_canvas" style="width:100%; height:100%"></div>`
+ <input type="button" value="Raz" onclick="raz()">
+ <input type="button" value="first" onclick="first()">
+ <input type="button" value="second" onclick="second()">
+
+<FORM id="myform">
+<SELECT NAME="mylist" onChange="disp_text()">
+<OPTION VALUE="m1">Cape Fear
+<OPTION VALUE="m2">The Good, the Bad and the Ugly
+<OPTION VALUE="m3">The Omen
+<OPTION VALUE="m4">The Godfather
+<OPTION VALUE="m5">Forrest Gump
+</SELECT>
+</FORM>
