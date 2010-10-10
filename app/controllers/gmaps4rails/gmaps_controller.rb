@@ -1,6 +1,7 @@
 module Gmaps4rails
   class GmapsController < ApplicationController
-    #unloadable    
+    unloadable    
+    
     def index
       @model = params["model"]
       if @model.constantize.is_gmappable? == true

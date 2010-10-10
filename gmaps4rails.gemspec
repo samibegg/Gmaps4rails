@@ -5,12 +5,12 @@
 
 Gem::Specification.new do |s|
   s.name = %q{gmaps4rails}
-  s.version = "0.0.2"
+  s.version = "0.0.7"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Benjamin Roth"]
   s.date = %q{2010-10-10}
-  s.description = %q{Enable easy display of items (taken from a model) on a Google Map. Uses Javascript API V3.}
+  s.description = %q{IN HEAVY DEV. Will enable easy display of items (taken from a model) on a Google Map. Uses Javascript API V3.}
   s.email = %q{apnea.diving.deep@gmail.com}
   s.extra_rdoc_files = [
     "README.rdoc"
@@ -19,31 +19,20 @@ Gem::Specification.new do |s|
     "app/controllers/gmaps4rails/gmaps_controller.rb",
      "app/helpers/application_helper.rb",
      "app/helpers/gmaps4rails/Gmaps_helper.rb",
-     "app/models/gmaps4rails/gmaps.rb",
      "app/views/gmaps4rails/_map.html.erb",
-     "app/views/gmaps4rails/gmaps/index.html.erb",
      "app/views/gmaps4rails/gmaps/index.xml.builder",
      "config/routes.rb",
      "lib/acts_as_gmappable/base.rb",
      "lib/application_helper.rb",
      "lib/engine.rb",
      "lib/gmaps4rails.rb",
-     "lib/rails/generators/gmaps4rails/gmaps4rails_generator.rb",
-     "lib/rails/generators/gmaps4rails/templates/initializer.rb",
-     "lib/rails/generators/gmaps4rails/templates/migration.rb",
-     "lib/rails/generators/gmaps4rails/templates/schema.rb",
-     "lib/rails/railties/tasks.rake",
      "public/javascripts/gmaps4rails.js"
   ]
   s.homepage = %q{http://github.com/apneadiving/test-for-maps}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}
-  s.summary = %q{Enable easy display of items (taken from a model) on a Google Map. Uses Javascript API V3.}
-  s.test_files = [
-    "test/test_helper.rb",
-     "test/unit/gmaps4rails_widget_test.rb"
-  ]
+  s.summary = %q{IN HEAVY DEV. Will enable easy display of items (taken from a model) on a Google Map. Uses Javascript API V3.}
 
   if s.respond_to? :specification_version then
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
