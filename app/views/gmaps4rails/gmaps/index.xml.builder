@@ -1,13 +1,13 @@
 xml.instruct! :xml, :version=>"1.0"
 xml.kml do
   xml.Document do
-    if @objects.first.respond_to?('gmaps4rails_marker')
+    #if @objects.first.respond_to?('gmaps4rails_marker')
       xml.Style('id' => 'specmarker') do
         xml.IconStyle do 
           xml.Icon "<href>" + @objects.first.gmaps4rails_marker + "</href>"
         end
       end
-    end
+    #end
 
     # <Style id="highlightPlacemark">
     #   <IconStyle>
@@ -17,7 +17,7 @@ xml.kml do
     #   </IconStyle>
     # </Style>
 
-    if @objects.respond_to?('gmaps4rails_info')
+    if @objects.first.respond_to?('gmaps4rails_info')
       @objects.each do |object|
 
         xml.Placemark do

@@ -50,8 +50,8 @@ module Gmaps4rails
                  #parse result if result received properly
                  if resp.inspect.include?('HTTPOK 200 OK')
                    fields = resp.body.split(',')
-                   self.latitude = fields[2]
-                   self.longitude = fields[3]
+                   self.gmaps4rails_latitude = fields[2]
+                   self.gmaps4rails_longitude = fields[3]
                    #saves a boolean to remind the status
                    self.gmaps = true
                  else
