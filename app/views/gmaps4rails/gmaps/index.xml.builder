@@ -24,8 +24,7 @@ xml.kml do
           desc = object.gmaps4rails_info
           lat = object.gmaps4rails_latitude.nil? ? "" : object.gmaps4rails_latitude
           long = object.gmaps4rails_longitude.nil? ? "" : object.gmaps4rails_longitude
-          xml.name "click me"
-          xml.styleUrl "specmarker"
+          xml.styleUrl "#specmarker"
           xml.description desc
           xml.Point do
             str = long + "," + lat + ",0"
