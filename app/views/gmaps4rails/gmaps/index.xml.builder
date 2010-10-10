@@ -37,7 +37,7 @@ xml.kml do
         xml.Placemark do
           desc = object.gmaps4rails_picture.nil? ? "" : '<img width="40" heigth="40" src="' + object.gmaps4rails_picture + '">'
           xml.name "click me"
-          xml.styleUrl "specmarker"
+          xml.styleUrl "#specmarker"
           desc += object.gmaps4rails_description.nil? ? "" : object.gmaps4rails_description
           lat = object.gmaps4rails_latitude.nil? ? "" : object.gmaps4rails_latitude
           long = object.gmaps4rails_longitude.nil? ? "" : object.gmaps4rails_longitude
