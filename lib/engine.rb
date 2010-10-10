@@ -10,11 +10,6 @@ module Gmaps4rails
     config.widget_factory_name = "gmaps4rails"
     config.mount_at = '/'
     
-    # Load rake tasks
-    rake_tasks do
-      load File.join(File.dirname(__FILE__), 'rails/railties/tasks.rake')
-    end
-    
     # Check the gem config
     initializer "check config" do |app|
 

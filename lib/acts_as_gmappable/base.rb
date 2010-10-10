@@ -14,19 +14,7 @@ module Gmaps4rails
       module Config
         def acts_as_gmappable options = {}
           before_save :get_coordinates
-         
-          #attr_accessor :goptions
 
-          #write_inheritable_attribute(:goptions, {}) if goptions.nil?
-          # 
-          # def goptions
-          #   read_inheritable_attribute(:goptions)
-          # end
-          # This is where arbitrary code goes that you want to 
-          # add to the class that declared "acts_as_widget"
-          
-          #has_many :widgets,  :class_name => 'Gmaps4rails::Widget'
-          
           def self.is_gmappable?
             true
           end

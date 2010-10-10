@@ -8,6 +8,6 @@ module ApplicationHelper
     	end
     	display += '</select></form>'
     end
-    display
+    return display
   end
 end

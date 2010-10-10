@@ -31,7 +31,7 @@
 				request += '&options=' + split_filter_value[1];
 				}
 			}
-		alert(request);
+		alert(request); //TODO remove for real production
 	  gmaps4rails_ctaLayer = new google.maps.KmlLayer(request);
 	  gmaps4rails_ctaLayer.setMap(gmaps4rails_map);
 	}
