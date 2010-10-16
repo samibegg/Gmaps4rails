@@ -1,8 +1,9 @@
 == Gmaps4rails
 
-Gmaps4rails is developed to simply create a map with model instances (say Users).
+GEM NOT READY YET.
 It's still in heavy dev and I have a bug with engines (I can't find enough doc on this topic). See http://github.com/krschacht/rails_3_engine_demo/issues/issue/3/ for the bug report.
 
+Gmaps4rails is developed to simply create a map with model instances (say Users).
 
 
 == Installation
