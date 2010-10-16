@@ -6,7 +6,7 @@ Rails.application.routes.draw do |map|
  
   map.resources :gmaps, :only => [ :index ],
                          :controller => "gmaps4rails/gmaps",
-                         :path_prefix => mount_at#,
+                         :path_prefix => mount_at
                          #:name_prefix => "gmaps4rails_"
 
 end

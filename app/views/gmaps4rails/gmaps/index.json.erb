@@ -1,0 +1,27 @@
+ { "count": <%= @objects.size.to_s %>, 
+   "markers": [
+	<% if @objects.first.respond_to?('gmaps4rails_info') 
+				@objects.each do |object|
+				desc = object.gmaps4rails_info.nil? ? "No description provided" : CGI::escapeHTML(object.gmaps4rails_info)
+				lat = object.gmaps4rails_latitude.nil? ? "" : object.gmaps4rails_latitude
+				long = object.gmaps4rails_longitude.nil? ? "" : object.gmaps4rails_longitude
+	%>
+{"description": "<%=raw desc %>", "longitude": <%= long %>, "latitude": <%= lat %>, "marker_object": "null"}
+	<% end
+
+	else
+		@objects.each do |object|
+			stat = object.status.nil? ? "" : CGI::escapeHTML(object.status)
+			desc = object.picture.nil? ? "No description provided" :  "<img width='40' heigth='40' src='" + object.gmaps4rails_picture + "'>" + stat
+			
+			lat = object.gmaps4rails_latitude.nil? ? "" : object.gmaps4rails_latitude
+			long = object.gmaps4rails_longitude.nil? ? "" : object.gmaps4rails_longitude
+	
+			if (!(lat == "" || long == "")) %>
+{"description": "<%=raw desc %>", "longitude": <%= long %>, "latitude": <%= lat %>, "marker_object": "null"} <%= ',' unless object == @objects.last %>
+	<% 
+			end
+		end
+	end          
+%>
+]}

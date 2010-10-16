@@ -70,7 +70,7 @@ xml.kml do
           lat = object.gmaps4rails_latitude.nil? ? "" : object.gmaps4rails_latitude
           long = object.gmaps4rails_longitude.nil? ? "" : object.gmaps4rails_longitude
           xml.styleUrl "#customMap"
-          xml.description desc
+          xml.description '<![CDATA[' + desc + ']]>'
           xml.Point do
             str = long + "," + lat + ",0"
             xml.coordinates(str)
@@ -86,7 +86,7 @@ xml.kml do
           lat = object.gmaps4rails_latitude.nil? ? "" : object.gmaps4rails_latitude
           long = object.gmaps4rails_longitude.nil? ? "" : object.gmaps4rails_longitude
 
-          xml.description desc
+          xml.description '<![CDATA[' + desc +']]>'
           xml.Point do
             str = long + "," + lat + ",0"
             xml.coordinates(str)
