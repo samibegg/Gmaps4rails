@@ -4,10 +4,11 @@ begin
     gem.name = "gmaps4rails"
     gem.summary = "IN HEAVY DEV. Will enable easy display of items (taken from a model) on a Google Map. Uses Javascript API V3."
     gem.description = "IN HEAVY DEV. Will enable easy display of items (taken from a model) on a Google Map. Uses Javascript API V3."
-    gem.homepage = "http://github.com/apneadiving/test-for-maps"
+    gem.homepage = "http://github.com/apneadiving/Gmaps4rails"
     gem.email = "apnea.diving.deep@gmail.com"
     gem.authors = ["Benjamin Roth"]
     gem.files = Dir["{lib}/**/*", "{app}/**/*", "{public}/**/*", "{config}/**/*"]
+    gem.add_dependency "crack", ">= 0"
   end
   Jeweler::GemcutterTasks.new
 rescue

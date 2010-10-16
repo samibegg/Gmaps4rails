@@ -28,7 +28,7 @@ Gem::Specification.new do |s|
      "lib/gmaps4rails.rb",
      "public/javascripts/gmaps4rails.js"
   ]
-  s.homepage = %q{http://github.com/apneadiving/test-for-maps}
+  s.homepage = %q{http://github.com/apneadiving/git@github.com:apneadiving/Gmaps4rails}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}
