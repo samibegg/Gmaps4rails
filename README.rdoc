@@ -1,0 +1,43 @@
+== Gmaps4rails
+
+Gmaps4rails is made to make the display of model instances easy.
+It's still in heavy dev and I have a bug with engines (I can't find enough doc on this topic). See http://github.com/krschacht/rails_3_engine_demo/issues/issue/3/ for the bug report.
+
+
+
+== Installation
+
+	gem install gmaps4rails
+
+
+== Examples
+
+=== In your model	
+	acts_as_gmappable
+	
+  def gmaps4rails_address
+    self.address #describe how to retrieve the address from your model
+  end
+
+  def gmaps4rails_picture
+    self.picture #describe how to retrieve the picture from your model
+  end
+
+  def gmaps4rails_description
+    self.name #could be html
+  end
+
+=== Create a migration and add the following fields to your table:
+  t.string   "gmaps4rails_latitude"
+  t.string   "gmaps4rails_longitude"
+  t.boolean  "gmaps"
+
+=== In your view
+<%= render :partial => 'gmaps4rails/gmaps4rails', :locals => { :model => "User"}	 %>
+
+== Todo
+Many customization  will be available (at least, those already developed but not written here).
+
+== Copyright
+
+Copyright (c) 2010 apneadiving. See LICENSE for details.
