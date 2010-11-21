@@ -28,6 +28,7 @@ Gem::Specification.new do |s|
      "lib/application_helper.rb",
      "lib/engine.rb",
      "lib/gmaps4rails.rb",
+     "lib/tasks/install.rake",
      "public/images/marker.png",
      "public/javascripts/gmaps4rails.js"
   ]

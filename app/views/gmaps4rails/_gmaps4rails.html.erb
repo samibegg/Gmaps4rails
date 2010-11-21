@@ -53,8 +53,7 @@ var gmaps4rails_map_center_long = <%= model.constantize.gmaps4rails_map_options[
 var gmaps4rails_map_zoom = <%= model.constantize.gmaps4rails_map_options["zoom"] %>;
 var gmaps4rails_base_url = '<%= url_for gmaps_path%>';
 </script>
-
-<script src="/javascripts/gmaps4rails.js" type="text/javascript"></script>    
+<%=javascript_include_tag 'gmaps4rails' %>
 <% end %>
     <div id="map-container"> 
       <div id="gmaps4rails_map"></div> 
