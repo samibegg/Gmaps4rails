@@ -5,8 +5,8 @@ Rails.application.routes.draw do
 
   #match mount_at => 'gmaps4rails/gmaps#index'
  
-  resources :gmaps, :only => [ :index ],
-                         :controller => "gmaps4rails/gmaps"#,
+  resources :gmaps, :only => [ :index ], :controller => "gmaps4rails/gmaps"
+                          #,
    #                      :path_prefix => mount_at
                          #:name_prefix => "gmaps4rails_"
 

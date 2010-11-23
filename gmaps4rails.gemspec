@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Benjamin Roth"]
-  s.date = %q{2010-11-21}
+  s.date = %q{2010-11-23}
   s.description = %q{IN HEAVY DEV. Will enable easy display of items (taken from a model) on a Google Map. Uses Javascript API V3.}
   s.email = %q{apnea.diving.deep@gmail.com}
   s.extra_rdoc_files = [
@@ -17,17 +17,18 @@ Gem::Specification.new do |s|
   ]
   s.files = [
     "app/controllers/gmaps4rails/gmaps_controller.rb",
-     "app/helpers/application_helper.rb",
      "app/helpers/gmaps4rails/Gmaps_helper.rb",
      "app/views/gmaps4rails/_gmaps4rails.html.erb",
-     "app/views/gmaps4rails/_map.html.erb",
      "app/views/gmaps4rails/gmaps/index.json.erb",
-     "app/views/gmaps4rails/gmaps/index.xml.builder",
      "config/routes.rb",
      "lib/acts_as_gmappable/base.rb",
      "lib/application_helper.rb",
-     "lib/engine.rb",
      "lib/gmaps4rails.rb",
+     "lib/rails/generators/gmaps4rails/gmaps4rails_generator.rb",
+     "lib/rails/generators/gmaps4rails/templates/initializer.rb",
+     "lib/rails/generators/gmaps4rails/templates/migration.rb",
+     "lib/rails/generators/gmaps4rails/templates/schema.rb",
+     "lib/rails/railties/tasks.rake",
      "lib/tasks/install.rake",
      "public/images/marker.png",
      "public/javascripts/gmaps4rails.js"
@@ -37,6 +38,10 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}
   s.summary = %q{IN HEAVY DEV. Will enable easy display of items (taken from a model) on a Google Map. Uses Javascript API V3.}
+  s.test_files = [
+    "test/test_helper.rb",
+     "test/unit/gmaps4rails_widget_test.rb"
+  ]
 
   if s.respond_to? :specification_version then
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
