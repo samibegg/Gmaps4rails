@@ -1,38 +1,7 @@
 <% content_for :head do %>
-<style type="text/css"> 
-
-   #map-container {
-     padding: 6px;
-     border-width: 1px;
-     border-style: solid;
-     border-color: #ccc #ccc #999 #ccc;
-     -webkit-box-shadow: rgba(64, 64, 64, 0.5) 0 2px 5px;
-     -moz-box-shadow: rgba(64, 64, 64, 0.5) 0 2px 5px;
-     box-shadow: rgba(64, 64, 64, 0.1) 0 2px 5px;
-     width: 800px;
-   }
-
-   #gmaps4rails_map {
-     width: 800px;
-     height: 400px;
-   }
-
-   #actions {
-     list-style: none;
-     padding: 0;
-   }
-
-   #inline-actions {
-     padding-top: 10px;
-   }
-
-   .item {
-     margin-left: 20px;
-   }
-</style>
+<%= stylesheet_link_tag 'gmaps4rails' %>
 <script src="http://www.google.com/jsapi"></script> 
-<script type="text/javascript" src='http://google-maps-utility-library-v3.googlecode.com/svn/tags/markerclusterer/1.0/src/markerclusterer.js'>
-</script>
+<script type="text/javascript" src='http://google-maps-utility-library-v3.googlecode.com/svn/tags/markerclusterer/1.0/src/markerclusterer.js'></script>
 <script type="text/javascript" charset="utf-8">
 var styles = [{
   url: 'http://google-maps-utility-library-v3.googlecode.com/svn/tags/markerclusterer/1.0/images/people35.png',
@@ -51,7 +20,7 @@ var gmaps4rails_model = '<%= model %>';
 var gmaps4rails_map_center_lat = <%= model.constantize.gmaps4rails_map_options["latitude"] %>;
 var gmaps4rails_map_center_long = <%= model.constantize.gmaps4rails_map_options["longitude"] %>;
 var gmaps4rails_map_zoom = <%= model.constantize.gmaps4rails_map_options["zoom"] %>;
-var gmaps4rails_base_url = '<%= url_for gmaps_path%>';
+var gmaps4rails_base_url = '<%= url_for gmaps_path %>';
 </script>
 <%=javascript_include_tag 'gmaps4rails' %>
 <% end %>

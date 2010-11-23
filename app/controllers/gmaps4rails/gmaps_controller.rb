@@ -3,13 +3,14 @@ module Gmaps4rails
     unloadable    
     
     def index
-      @model = params["model"]
-      @filter = params["filter"]
-      @options = params["options"]
-      if @model.constantize.is_gmappable? == true
-        @objects = @model.constantize.gmaps4rails_filter(@filter, @options)
+      if request.xhr?
+        @model = params["model"]
+        @filter = params["filter"]
+        @options = params["options"]
+        if @model.constantize.is_gmappable? == true
+          @objects = @model.constantize.gmaps4rails_filter(@filter, @options)
+        end
       end
-      render 
    end
         
   end

@@ -8,11 +8,10 @@ if defined?(Rails) && Rails::VERSION::MAJOR == 3
     require 'acts_as_gmappable/base'
   
     class Engine < Rails::Engine
-
        # config.autoload_paths += %W(#{config.root}/lib)
        # 
        # initializer "static assets" do |app|
-       #   app.middleware.use ::ActionDispatch::Static, "#{root}/public"
+       #   app.middleware.use ::ActionDispatch::Static, "#{root}/public%s"
        # end
        # 
        # def self.activate
