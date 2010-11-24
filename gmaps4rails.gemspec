@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{gmaps4rails}
-  s.version = "0.0.13"
+  s.version = "0.0.14"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Benjamin Roth"]
-  s.date = %q{2010-11-23}
+  s.date = %q{2010-11-24}
   s.description = %q{IN HEAVY DEV. Will enable easy display of items (taken from a model) on a Google Map. Uses Javascript API V3.}
   s.email = %q{apnea.diving.deep@gmail.com}
   s.extra_rdoc_files = [
@@ -17,9 +17,9 @@ Gem::Specification.new do |s|
   ]
   s.files = [
     "app/controllers/gmaps4rails/gmaps_controller.rb",
-     "app/helpers/gmaps4rails/Gmaps_helper.rb",
+     "app/helpers/gmaps4rails/gmaps_helper.rb",
      "app/views/gmaps4rails/_gmaps4rails.html.erb",
-     "app/views/gmaps4rails/gmaps/index.json.erb",
+     "app/views/gmaps4rails/gmaps/index.js.erb",
      "config/routes.rb",
      "lib/acts_as_gmappable/base.rb",
      "lib/application_helper.rb",
@@ -31,7 +31,8 @@ Gem::Specification.new do |s|
      "lib/rails/railties/tasks.rake",
      "lib/tasks/install.rake",
      "public/images/marker.png",
-     "public/javascripts/gmaps4rails.js"
+     "public/javascripts/gmaps4rails.js",
+     "public/stylesheets/gmaps4rails.css"
   ]
   s.homepage = %q{http://github.com/apneadiving/Gmaps4rails}
   s.rdoc_options = ["--charset=UTF-8"]
