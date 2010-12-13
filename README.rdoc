@@ -1,7 +1,7 @@
 == Gmaps4rails
 
-Gmaps4rails is developped to simply create a map with model instances (say Users).
-It's based on Rails 3 Engines.
+Gmaps4rails is developped to simply create a Google Map (Gmaps) with model instances (say Users).
+It's based on Ruby on Rails 3 Engines.
 It works properly but I still have something to correct: making it work without resorting to the serve_static_assets to true in production.
 
 == Installation
@@ -40,9 +40,11 @@ In your view
 
 == Options
 
-=== Setting Map Center
-	<%= render :partial => 'gmaps4rails/gmaps4rails', :locals => { :model => "User", :ref_latitude => 0 , :ref_longitude => 0 }	 %>
-
+=== Setting Map Options
+In your model:
+	def gmaps4rails_map_options
+	  { "zoom" =>1, "latitude" => 0, "longitude" => 0}
+	end
 === Scopes (displays a dropdown list enabling you to filter the map content)
 In your model:
   # Whatever scope you want

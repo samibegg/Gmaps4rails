@@ -5,12 +5,12 @@
 
 Gem::Specification.new do |s|
   s.name = %q{gmaps4rails}
-  s.version = "0.0.14"
+  s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Benjamin Roth"]
   s.date = %q{2010-11-24}
-  s.description = %q{IN HEAVY DEV. Will enable easy display of items (taken from a model) on a Google Map. Uses Javascript API V3.}
+  s.description = %q{Enables easy display of items (taken from a model) on a Google Map. Uses Javascript API V3.}
   s.email = %q{apnea.diving.deep@gmail.com}
   s.extra_rdoc_files = [
     "README.rdoc"
@@ -38,7 +38,7 @@ Gem::Specification.new do |s|
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}
-  s.summary = %q{IN HEAVY DEV. Will enable easy display of items (taken from a model) on a Google Map. Uses Javascript API V3.}
+  s.summary = %q{Enables easy display of items (taken from a model) on a Google Map. Uses Javascript API V3.}
   s.test_files = [
     "test/test_helper.rb",
      "test/unit/gmaps4rails_widget_test.rb"
