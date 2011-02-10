@@ -1,18 +1,21 @@
  { "count": <%= @objects.size.to_s %>, 
    "markers": [
-	<% if @objects.first.respond_to?('gmaps4rails_info') 
+
+	<% if @objects.first.respond_to?('gmaps4rails_description') 
 				@objects.each do |object|
-				desc = object.gmaps4rails_info.nil? ? "No description provided" : CGI::escapeHTML(object.gmaps4rails_info)
+				desc = object.gmaps4rails_description.nil? ? "No description provided" : object.gmaps4rails_description
 				lat = object.gmaps4rails_latitude.nil? ? "" : object.gmaps4rails_latitude
 				long = object.gmaps4rails_longitude.nil? ? "" : object.gmaps4rails_longitude
 	%>
-{"description": "<%=raw desc %>", "longitude": <%= long %>, "latitude": <%= lat %>, "marker_object": "null"}
-	<% end
+
+    {"description": "<%=raw desc %>", "longitude": <%= long %>, "latitude": <%= lat %>, "marker_object": "null"} <%= ',' unless object == @objects.last %>
+
+	<% end #end of do
 
 	else
 		@objects.each do |object|
-			stat = object.status.nil? ? "" : CGI::escapeHTML(object.status)
-			desc = object.picture.nil? ? "No description provided" :  "<img width='40' heigth='40' src='" + object.gmaps4rails_picture + "'>" + stat
+      # stat = object.status.nil? ? "" : CGI::escapeHTML(object.status)
+			desc = object.gmaps4rails_picture.nil? ? "No description provided" :  "<img width='40' heigth='40' src='" + object.gmaps4rails_picture + "'>"
 			
 			lat = object.gmaps4rails_latitude.nil? ? "" : object.gmaps4rails_latitude
 			long = object.gmaps4rails_longitude.nil? ? "" : object.gmaps4rails_longitude
@@ -20,8 +23,8 @@
 			if (!(lat == "" || long == "")) %>
 {"description": "<%=raw desc %>", "longitude": <%= long %>, "latitude": <%= lat %>, "marker_object": "null"} <%= ',' unless object == @objects.last %>
 	<% 
-			end
-		end
-	end          
+			end # end of if
+		end # end of do
+	end # end of if/else
 %>
 ]}

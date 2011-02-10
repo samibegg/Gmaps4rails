@@ -58,6 +58,9 @@ function getInfoWindow(which)
 //initializes the map
 function create_map(filter_value) {
 	request = gmaps4rails_base_url + '?model=' + gmaps4rails_model;
+
+  if(gmaps4rails_scope != null)
+	  request += '&scope=' + gmaps4rails_scope;
 	
 	if (!(filter_value == null))
 		{
