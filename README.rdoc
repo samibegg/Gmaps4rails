@@ -32,7 +32,7 @@ Create a migration and add the following fields to your table:
 
 In your view:
 
-	<%= gmaps4rails_map("rails_model", "User") %>
+	<%= gmaps4rails_map("User") %>
 
 == Options
 
