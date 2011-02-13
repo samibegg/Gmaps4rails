@@ -5,13 +5,13 @@
 
 Gem::Specification.new do |s|
   s.name = %q{gmaps4rails}
-  s.version = "0.2.1"
+  s.version = "0.2.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Benjamin Roth"]
+  s.authors = ["Benjamin Roth", "David Ruyer"]
   s.date = %q{2011-02-13}
-  s.description = %q{Enables easy display of items (taken from a Rails 3 model) on a Google Map. Uses Javascript API V3.}
-  s.email = %q{apnea.diving.deep@gmail.com}
+  s.description = %q{Enables easy display of items (taken from a Rails 3 model) on a Google Map. Uses Javascript API V3. Provides a helper and much configuration.}
+  s.email = %q{benjamin.roth@peachyweb.com}
   s.extra_rdoc_files = [
     "README.rdoc"
   ]
