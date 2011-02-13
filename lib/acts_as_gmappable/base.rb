@@ -37,7 +37,7 @@ module Gmaps4rails
           }
         end
         
-        def gmaps4rails_trusted_scopes
+        def self.gmaps4rails_trusted_scopes
           []
         end
  

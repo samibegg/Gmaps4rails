@@ -70,7 +70,7 @@ So as above, change the call in your view:
 
 In this case, you must add in your model:
 
-	def gmaps4rails_trusted_scopes
+	def self.gmaps4rails_trusted_scopes
 	  ["my_scope", "another_trusted_scope"]
 	end
 

@@ -18,7 +18,7 @@ var styles = [{
 <% options.each do |key, value| %>
 Gmaps4Rails.<%= key %> = <%=raw value.is_a?(String) ?  "'#{value}'" : value  %>;
 <% end %>	
-var builder = <%=raw builder %>;	
+var builder = <%=raw options[""] == "json" ? builder : "'#{builder}'" %>;
 Gmaps4Rails.initialize(builder);
 </script>
 <% end %>
