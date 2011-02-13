@@ -92,7 +92,7 @@ Then in your view:
 
 Or with options as well:
   
-	<%= gmaps4rails_map("json", @json, {"processing" => 'json', "map_center_longitude" => "90"}) %>
+	<%= gmaps4rails_map(@json, {"processing" => 'json', "map_center_longitude" => "90"}) %>
 	
 
 == Todo?
