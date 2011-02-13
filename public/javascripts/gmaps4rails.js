@@ -1,142 +1,122 @@
 google.load('maps', '3', { other_params: 'sensor=false' });
 
-google.setOnLoadCallback(initialize);
-var gmaps4rails_map = null;
-var gmaps4rails_data = null;
-var markerClusterer = null;
-var gmaps4rails_infowindow = null;
-var gmaps_circle = null ;
-
-//put markers on the map + launch the clusterer
-function setMarkers(locations) {
-	
-	//variable used for Marker Clusterer
-	var markers = [];
-	
-	if (markerClusterer) {
-		markerClusterer.clearMarkers();
-	}
-  // Add markers to the map
-  for (var i = 0; i < locations.markers.length; ++i) {
- 		 // Marker sizes are expressed as a Size of X,Y
-		  var image = new google.maps.MarkerImage(gmaps4rails_marker_picture,
-		      new google.maps.Size(gmaps4rails_marker_width, gmaps4rails_marker_length));
-		  var myLatLng = new google.maps.LatLng(locations.markers[i].latitude, locations.markers[i].longitude); 
-		  var ThisMarker = new google.maps.Marker({position: myLatLng, map: gmaps4rails_map, icon: image}); //TODO Offer title customization title: "title"
-			//save object for later use, basically, to get back the text to display when clicking it
-			locations.markers[i].marker_object = ThisMarker; 
-			//save the marker again in a list for the clusterer
-			markers.push(ThisMarker);
-			
-			//add click listener
-  	  google.maps.event.addListener(locations.markers[i].marker_object, 'click', function() { if (gmaps4rails_infowindow!=null) {gmaps4rails_infowindow.close();}; getInfoWindow(this);});
-	
-  }
-
-	markerClusterer = new MarkerClusterer(gmaps4rails_map, markers, {
-		maxZoom: 10,
-		gridSize: 50,
-		//styles: styles TODO: offer clusterer customization
-	});	
-}
-
-//get infowindow content when listener calls it
-function getInfoWindow(which)
-{	
-  for ( var m = 0; m < gmaps4rails_data.markers.length; ++m )
-  {
-    var markerInfo = gmaps4rails_data.markers[m].marker_object;
-    if ( markerInfo == which ) 
-    {
-        gmaps4rails_infowindow = new google.maps.InfoWindow({content: gmaps4rails_data.markers[m].description });
-        gmaps4rails_infowindow.open( gmaps4rails_map, which );
-        return;
-    }
-  }
-}
-
-//initializes the map
-function create_map(filter_value) {
-	request = gmaps4rails_base_url + '?model=' + gmaps4rails_model;
-
-  if(gmaps4rails_scope != null)
-	  request += '&scope=' + gmaps4rails_scope;
-	
-	if (!(filter_value == null))
-		{
-		split_filter_value = filter_value.split('+');
-		if (!(split_filter_value[0] == null))
-			{
-				request += '&filter=' + split_filter_value[0];
-			}
-		if (!(split_filter_value[1] == null))
-			{
-			request += '&options=' + split_filter_value[1];
-			}
-		}
-	jQuery.getJSON(request,
-		        function(data){
-								gmaps4rails_data = data;
-							  setMarkers(gmaps4rails_data);			
-	});
-}
-
-function initialize() {
-	gmaps4rails_reset();
-	//infowindow closes when user clicks on the map
-	google.maps.event.addListener(gmaps4rails_map, 'click', function() 
-		{ if (gmaps4rails_infowindow != null) {gmaps4rails_infowindow.close();} 
-	});
-	create_map();
-}
-
-function gmaps4rails_resfreshmap() {
-	 gmaps4rails_reset();
-   var index = document.gmaps4rails_form.gmaps4rails_list.selectedIndex;
-   var filter_value = document.gmaps4rails_form.gmaps4rails_list.options[index].value;
-	 create_map(filter_value);
-}
-
-function gmaps4rails_reset(){
-		gmaps4rails_map = new google.maps.Map(document.getElementById('gmaps4rails_map'), {
-				zoom: gmaps4rails_map_zoom,
-				center: new google.maps.LatLng(gmaps4rails_map_center_lat, gmaps4rails_map_center_long),
-				mapTypeId: google.maps.MapTypeId.ROADMAP
+var Gmaps4Rails = {
+	processing: 'rails_model',
+	map: null,
+  marker_picture : 'http://inmotionchiro.com/gmap_plugin/imgs/markers/marker.png',
+	marker_width : 22,
+	marker_length : 32,
+	map_center_latitude : 0,
+	map_center_longitude : 0, 
+	map_zoom : 1,
+	base_url : '/gmaps',
+	rails_model : null,
+	model_scope : null,
+ 	ref_latitude : null,
+  ref_longitude : null,
+  info_window : null,
+  locations : null,
+  markerClusterer: null,
+  do_clustering: true,
+  clusterer_gridSize: 50,
+	clusterer_maxZoom: 10,
+	//Triggers the creation of the map.
+	//Two options:
+	// 1- processing == "rails_model"  && builder = model_name
+	// 2- processing == "json"    && builder = json in format: [{"description": , "longitude": , "latitude":, "picture": "", "width": "", "length": ""}]
+	initialize: function(builder) {
+		this.reset_map();
+		//infowindow closes when user clicks on the map
+		google.maps.event.addListener(this.map, 'click', function() 
+			{ if (this.info_window != null) {this.info_window.close();} 
 		});
-}
-
-// max_distance in km
-function filter_distance() {
-	var max_distance = parseInt(document.getElementById('gmaps4rails_user_distance').value, 10);
-	if (!(max_distance>0 || max_distance<0))
-	{ 
-	 alert('Please set the max distance');
-	}
-	else{
-		if (gmaps_circle!=null) { gmaps_circle.setMap(null);}
-		var myCenter = new google.maps.LatLng(gmaps4rails_ref_lat, gmaps4rails_ref_long);
-		var filtered_markers = {"markers":[]};
-
-	
-		for (var i = 0; i < gmaps4rails_data.markers.length; ++i) {
-			if (get_distance(gmaps4rails_ref_long, gmaps4rails_data.markers[i].longitude, gmaps4rails_ref_lat, gmaps4rails_data.markers[i].latitude) < max_distance)
-				{ filtered_markers.markers.push(gmaps4rails_data.markers[i]);}
-			setMarkers(filtered_markers);
+		if (this.processing == "rails_model")
+		{ 
+			this.rails_model = builder;
+			this.create_from_model();
 		}
-		//radius is in meters
-		gmaps_circle = new google.maps.Circle({radius: max_distance*1000, center: myCenter, fillColor:"#00FF00", strokeColor: "#00EE00"}); 
-		gmaps_circle.setMap(gmaps4rails_map);
+		else if (this.processing == "json")
+		{
+			this.locations = builder;
+			this.setup_Markers();
+		}
+	},
+	
+	//resets the map, removes all markers
+	reset_map: function(){
+			this.map = new google.maps.Map(document.getElementById('gmaps4rails_map'), {
+					zoom: this.map_zoom,
+					center: new google.maps.LatLng(this.map_center_latitude, this.map_center_longitude),
+					mapTypeId: google.maps.MapTypeId.ROADMAP
+			});
+	},
+	
+	//creates the necessary query to get the model + scope, and sends json to setup_Markers
+	create_from_model: function (filter_value) {		
+	  	request = this.base_url + '?model=' + this.rails_model;
+
+		  if(this.model_scope != null)
+		  	{ request += '&scope=' + this.scope; }
+
+  			jQuery.getJSON(request,function(data){
+													Gmaps4Rails.locations = data;
+												  Gmaps4Rails.setup_Markers();			
+													}
+			);
+	},
+	
+  //Creates Marker from the locations passed + markerClusterer
+  setup_Markers: function () {		
+		//variable used for Marker Clusterer
+		var markers = [];
+	
+		//resests Clusterer if needed
+		if (this.markerClusterer) {
+			this.markerClusterer.clearMarkers();
+		}
+	  // Add markers to the map
+	  for (var i = 0; i < this.locations.length; ++i) {
+		   
+		   //test if value passed or use default 
+		   var marker_picture = this.locations[i].picture != "" && typeof this.locations[i].picture !== "undefined" ? this.locations[i].picture : this.marker_picture;
+		   var marker_width = this.locations[i].width != "" && typeof this.locations[i].width !== "undefined" ? this.locations[i].width : this.marker_width;
+		   var marker_height = this.locations[i].height != "" && typeof this.locations[i].height !== "undefined" ? this.locations[i].height : this.marker_length;
+	 		 // Marker sizes are expressed as a Size of X,Y
+			  var image = new google.maps.MarkerImage(marker_picture,
+			      																		new google.maps.Size(marker_width, marker_height)
+																								);
+			  var myLatLng = new google.maps.LatLng(this.locations[i].latitude, this.locations[i].longitude); 
+			  var ThisMarker = new google.maps.Marker({position: myLatLng, map: this.map, icon: image}); //TODO Offer title customization title: "title"
+				//save object for later use, basically, to get back the text to display when clicking it
+				this.locations[i].marker_object = ThisMarker; 
+				//save the marker again in a list for the clusterer
+				markers.push(ThisMarker);		
+				//add click listener
+	  	  google.maps.event.addListener(Gmaps4Rails.locations[i].marker_object, 'click', function() { if (Gmaps4Rails.info_window!=null) {Gmaps4Rails.info_window.close();}; Gmaps4Rails.getInfoWindow(this);});		
+  	}
+		if (this.do_clustering == true)
+			{
+				this.markerClusterer = new MarkerClusterer(this.map, markers, {
+				maxZoom: this.clusterer_maxZoom,
+				gridSize: this.clusterer_gridSize,
+				//styles: styles TODO: offer clusterer customization
+		  	});
+		  }
+	},
+	
+	//get info_window content when listener calls it
+	getInfoWindow: function(which)
+	{	
+	  for ( var m = 0; m < this.locations.length; ++m )
+	  {
+	    var markerInfo = this.locations[m].marker_object;
+	    if ( markerInfo == which && this.locations[m].description != "") 
+	    {
+	        this.info_window = new google.maps.InfoWindow({content: this.locations[m].description });
+	        this.info_window.open( this.map, which );
+	        return;
+	    }
+	  }
 	}
-}
-
-function get_distance(long1, long2, lat1, lat2) {
-	var theta = long1 - long2; 
-	var dist = Math.sin(deg2rad(lat1)) * Math.sin(deg2rad(lat2)) +  Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.cos(deg2rad(theta)); 
-  dist = Math.acos(dist); 
-  dist = rad2deg(dist); 
-  var km = dist * 60 * 1.853;
-	return km;
-}
-
-function deg2rad(value) { return value*Math.PI/180;}
-function rad2deg(value) { return value*180/Math.PI;}
+	
+};

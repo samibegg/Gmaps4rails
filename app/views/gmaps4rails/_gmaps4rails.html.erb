@@ -1,12 +1,11 @@
-<% 
-# Optional arguments
-scope ||= ""
-%>
-
 <% content_for :head do %>
 <%= stylesheet_link_tag 'gmaps4rails' %>
-<script src="http://www.google.com/jsapi"></script> 
+<% end %>
+
+<% content_for :scripts do %>
+<script src="http://www.google.com/jsapi"></script>
 <script type="text/javascript" src='http://google-maps-utility-library-v3.googlecode.com/svn/tags/markerclusterer/1.0/src/markerclusterer.js'></script>
+<%=javascript_include_tag 'gmaps4rails' %>
 <script type="text/javascript" charset="utf-8">
 var styles = [{
   url: 'http://google-maps-utility-library-v3.googlecode.com/svn/tags/markerclusterer/1.0/images/people35.png',
@@ -16,26 +15,14 @@ var styles = [{
   opt_textColor: '#ff00ff',
   opt_textSize: 10
 }];
-var gmaps4rails_ref_lat = <%= defined?(ref_latitude) ? ref_latitude : 'null' %>;
-var gmaps4rails_ref_long = <%= defined?(ref_longitude) ? ref_longitude : 'null' %>;
-var gmaps4rails_marker_picture = '<%= model.constantize.gmaps4rails_markers_pic["picture"] %>';
-var gmaps4rails_marker_width = <%= model.constantize.gmaps4rails_markers_pic["width"] %>;
-var gmaps4rails_marker_length = <%= model.constantize.gmaps4rails_markers_pic["length"] %>;
-var gmaps4rails_model = '<%= model %>';
-var gmaps4rails_scope = '<%= scope %>';
-var gmaps4rails_map_center_lat = <%= model.constantize.gmaps4rails_map_options["latitude"] %>;
-var gmaps4rails_map_center_long = <%= model.constantize.gmaps4rails_map_options["longitude"] %>;
-var gmaps4rails_map_zoom = <%= model.constantize.gmaps4rails_map_options["zoom"] %>;
-var gmaps4rails_base_url = '<%= url_for gmaps_path %>';
+<% options.each do |key, value| %>
+Gmaps4Rails.<%= key %> = <%=raw value.is_a?(String) ?  "'#{value}'" : value  %>;
+<% end %>	
+var builder = <%=raw builder %>;	
+Gmaps4Rails.initialize(builder);
 </script>
-<%=javascript_include_tag 'gmaps4rails' %>
 <% end %>
-    <div id="map-container"> 
-      <div id="gmaps4rails_map"></div> 
-    </div> 
-<% if defined?(ref_longitude) && defined?(ref_latitude)%>
-    <div id="inline-actions">
-			<input id="gmaps4rails_user_distance" >
-			<input type="submit" value="Filter" class="item" onclick="filter_distance()">
-    </div> 
-<% end %>
+
+<div id="map-container"> 
+  <div id="gmaps4rails_map"></div> 
+</div>
