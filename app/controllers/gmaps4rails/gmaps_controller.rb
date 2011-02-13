@@ -7,7 +7,8 @@ module Gmaps4rails
       @scope = params["scope"]
       @model = @model.constantize
       
-      if @scope && !@scope.empty? && @model.gmaps4rails_trusted_scopes.include?(@scope)
+      # The split returns the array [scope_name, arg1, arg2, ...]
+      if @scope && !@scope.empty? && @model.gmaps4rails_trusted_scopes.include?(@scope.split(/\(| *, *|\)/)[0])
         @objects = eval("#{@model}.#{@scope}") # Cannot use send with lambda scope 
                                                 # because the arguments have to be separated
       else
