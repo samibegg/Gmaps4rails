@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{gmaps4rails}
-  s.version = "0.2.2"
+  s.version = "0.2.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Benjamin Roth", "David Ruyer"]
-  s.date = %q{2011-02-13}
+  s.date = %q{2011-02-15}
   s.description = %q{Enables easy display of items (taken from a Rails 3 model) on a Google Map. Uses Javascript API V3. Provides a helper and much configuration.}
   s.email = %q{benjamin.roth@peachyweb.com}
   s.extra_rdoc_files = [
@@ -19,10 +19,10 @@ Gem::Specification.new do |s|
     "app/controllers/gmaps4rails/gmaps_controller.rb",
     "app/helpers/gmaps4rails/gmaps_helper.rb",
     "app/views/gmaps4rails/_gmaps4rails.html.erb",
-    "app/views/gmaps4rails/gmaps/index.js.erb",
     "config/routes.rb",
     "lib/acts_as_gmappable/base.rb",
     "lib/application_helper.rb",
+    "lib/array.rb",
     "lib/gmaps4rails.rb",
     "lib/rails/generators/gmaps4rails/gmaps4rails_generator.rb",
     "lib/rails/generators/gmaps4rails/templates/initializer.rb",
