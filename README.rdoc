@@ -117,8 +117,6 @@ Or with options as well:
 
 == Todo?
 
-Maybe use Geokit to handle the geocoding stuff.
-
 Feel free ton contact me, you have your say. I hope I'll have time enough to improve it.
 
 == Copyright

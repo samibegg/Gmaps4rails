@@ -4,7 +4,7 @@ require 'crack'
 
 module Gmaps4rails
   
-  def json(object)
+  def Gmaps4rails.create_json(object)
    	"{\"description\": \"#{object.gmaps4rails_infowindow}\",
      \"longitude\": \"#{object.gmaps4rails_longitude}\",
      \"latitude\": \"#{object.gmaps4rails_latitude}\",
@@ -55,7 +55,7 @@ module Gmaps4rails
         def to_gmaps4rails
           json = "["
           if (!(self.gmaps4rails_latitude == "" || self.gmaps4rails_longitude == ""))
-           	json += Gmaps4rails::json(self)
+           	json += Gmaps4rails.create_json(self)
             json += "," 
           end
           json.chop!

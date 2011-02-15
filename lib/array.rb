@@ -3,7 +3,7 @@ class Array
     json = "["
     each do |object|
       if (!(object.gmaps4rails_latitude == "" || object.gmaps4rails_longitude == ""))
-        json += Gmaps4rails::json(object)
+        json += Gmaps4rails.create_json(object)
         json += "," 
       end
     end
