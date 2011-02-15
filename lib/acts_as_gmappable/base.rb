@@ -3,6 +3,17 @@ require 'uri'
 require 'crack'
 
 module Gmaps4rails
+  
+  def json(object)
+   	"{\"description\": \"#{object.gmaps4rails_infowindow}\",
+     \"longitude\": \"#{object.gmaps4rails_longitude}\",
+     \"latitude\": \"#{object.gmaps4rails_latitude}\",
+     \"picture\": \"#{object.gmaps4rails_marker_picture['picture']}\",
+     \"width\": \"#{object.gmaps4rails_marker_picture['width']}\",
+     \"height\": \"#{object.gmaps4rails_marker_picture['height']}\"
+    }"
+  end
+  
   module ActsAsGmappable
 
     module Base
@@ -44,13 +55,7 @@ module Gmaps4rails
         def to_gmaps4rails
           json = "["
           if (!(self.gmaps4rails_latitude == "" || self.gmaps4rails_longitude == ""))
-           	json += "{\"description\": \"#{self.gmaps4rails_infowindow}\",
-               		  \"longitude\": \"#{self.gmaps4rails_longitude}\",
-               		  \"latitude\": \"#{self.gmaps4rails_latitude}\",
-               		  \"picture\": \"#{self.gmaps4rails_marker_picture['picture']}\",
-               		  \"width\": \"#{self.gmaps4rails_marker_picture['width']}\",
-               		  \"height\": \"#{self.gmaps4rails_marker_picture['height']}\"
-               		  }" 
+           	json += Gmaps4rails::json(self)
             json += "," 
           end
           json.chop!

@@ -10,7 +10,8 @@ if defined?(Rails) && Rails::VERSION::MAJOR == 3
        initializer "static assets" do |app|
          app.middleware.use ::ActionDispatch::Static, "#{root}/public"
        end
-     end
+    end
+
   end
 end
 
