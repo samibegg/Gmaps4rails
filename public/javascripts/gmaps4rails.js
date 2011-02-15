@@ -57,7 +57,6 @@ var Gmaps4Rails = {
 
 		  if(this.model_scope != null)
 		  	{ request += '&scope=' + this.model_scope; }
-
   			jQuery.getJSON(request,function(data){
 													Gmaps4Rails.locations = data;
 												  Gmaps4Rails.setup_Markers();			

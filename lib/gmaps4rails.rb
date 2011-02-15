@@ -2,6 +2,7 @@ if defined?(Rails) && Rails::VERSION::MAJOR == 3
   module Gmaps4rails
     require "rails"
     require "action_controller"
+    require 'array'
     require 'application_helper'
     require 'acts_as_gmappable/base'
   

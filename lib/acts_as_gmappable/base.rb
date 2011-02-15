@@ -40,6 +40,22 @@ module Gmaps4rails
         def self.gmaps4rails_trusted_scopes
           []
         end
+        
+        def to_gmaps4rails
+          json = "["
+          if (!(self.gmaps4rails_latitude == "" || self.gmaps4rails_longitude == ""))
+           	json += "{\"description\": \"#{self.gmaps4rails_infowindow}\",
+               		  \"longitude\": \"#{self.gmaps4rails_longitude}\",
+               		  \"latitude\": \"#{self.gmaps4rails_latitude}\",
+               		  \"picture\": \"#{self.gmaps4rails_marker_picture['picture']}\",
+               		  \"width\": \"#{self.gmaps4rails_marker_picture['width']}\",
+               		  \"height\": \"#{self.gmaps4rails_marker_picture['height']}\"
+               		  }" 
+            json += "," 
+          end
+          json.chop!
+          json += "]"
+        end
  
         def get_coordinates
          if self.gmaps4rails_address.nil? || self.gmaps4rails_address.empty?
